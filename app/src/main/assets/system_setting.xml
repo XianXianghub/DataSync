@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<settings>
+	<setting id="5" name="wifi_on" />
+	<setting id="18" name="wifi_config"/>
+	<setting id="1" name="bluetooth_on"  />
+	<setting id="12" name="screen_brightness" />
+	<setting id="8" name="screen_brightness_mode" />
+	<setting id="6" name="auto_time" />
+	<setting id="4" name="auto_time_zone"  />
+	<setting id="19" name="time_zone"/>
+	<setting id="20" name="language"/>
+	<setting id="13" name="volume_media" />
+	<setting id="14" name="volume_call" />
+	<setting id="15" name="volume_alarm" />
+	<setting id="16" name="volume_ring" />
+	<setting id="29" name="location_mode"/>
+	<setting id="28" name="Glove_mode"/>
+	<setting id="21" name="lock_screen_show_notifications"/>
+	<setting id="22" name="notification_badging"/>
+	<setting id="24" name="notification_light_pulse"/>
+	<setting id="25" name="notification_sound"/>
+	<setting id="23" name="ntp_server"/>
+	<setting id="27" name="screen_off_timeout"/>
+	<setting id="30" name="wifi_scan_always_enabled"/>
+	<setting id="17" name="font_scale"/>
+	<setting id="10" name="vibrate_when_ringing" />
+	<setting id="9" name="accelerometer_rotation"  />
+	<setting id="11" name="alarm_alert" />
+	<setting id="31" name="sound_effects_enabled"/>
+	<setting id="32" name="accelerometer_rotation"/>
+	<setting id="33" name="time_12_24"/>
+	<setting id="34" name="location_mode"/>
+	<setting id="35" name="default_input"/>
+	<setting id="36" name="apn_config"/>
+</settings>

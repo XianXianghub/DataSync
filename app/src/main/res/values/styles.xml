@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="scstyle" parent="@style/Theme.AppCompat.Light">
+        <item name="android:colorForeground">@color/blue_light</item>
+        <item name="colorControlActivated">@color/blue_light</item>
+        <item name="colorSwitchThumbNormal">@color/line_gray</item>
+    </style>
+    <style name="start" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@drawable/bg_start</item>
+        <item name="android:colorPrimaryDark">@color/blue_light</item>
+        <item name="windowActionBar">true</item>
+    </style>
+</resources>

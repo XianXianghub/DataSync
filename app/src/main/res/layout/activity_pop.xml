@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_pop"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_popwindow">
+
+    <TextView
+        android:id="@+id/pop_window_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center"
+        android:paddingStart="@dimen/dp20"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_big1_5"
+        app:layout_constraintBottom_toTopOf="@+id/config_scan"
+        app:layout_constraintLeft_toLeftOf="@+id/config_scan"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/config_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dp20"
+        android:text="@string/config_scan"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_middle3"
+        app:layout_constraintBottom_toTopOf="@+id/config_system"
+        app:layout_constraintTop_toBottomOf="@+id/pop_window_title"
+        app:layout_constraintVertical_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:background="@color/line_gray"
+        app:layout_constraintBottom_toTopOf="@+id/config_system"
+        app:layout_constraintTop_toBottomOf="@+id/config_scan" />
+
+    <TextView
+        android:id="@+id/config_system"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dp20"
+        android:text="@string/config_system"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_middle3"
+        app:layout_constraintBottom_toTopOf="@+id/config_tip"
+        app:layout_constraintTop_toBottomOf="@+id/config_scan"
+        app:layout_constraintVertical_weight="1" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/config_system_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp40"
+        android:checked="true"
+        app:layout_constraintBottom_toBottomOf="@+id/config_system"
+        app:layout_constraintDimensionRatio="5:3"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/config_system"
+        app:theme="@style/scstyle"
+        app:useMaterialThemeColors="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp1"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:background="@color/line_gray"
+        app:layout_constraintBottom_toTopOf="@+id/config_tip"
+        app:layout_constraintTop_toBottomOf="@+id/config_system" />
+
+    <TextView
+        android:id="@+id/config_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dp20"
+        android:text="@string/config_tip"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_middle3"
+        app:layout_constraintBottom_toTopOf="@+id/pop_cancel"
+        app:layout_constraintTop_toBottomOf="@+id/config_system"
+        app:layout_constraintVertical_weight="1" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/config_scan_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp40"
+        android:checked="true"
+        android:textOff="asdad"
+        app:layout_constraintBottom_toBottomOf="@+id/config_scan"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/config_scan"
+        app:theme="@style/scstyle"
+        app:useMaterialThemeColors="true" />
+
+    <EditText
+        android:id="@+id/config_tip_value"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/dp50"
+        android:layout_marginEnd="@dimen/dp30"
+        android:background="@null"
+        android:gravity="center"
+        android:hint="@string/config_tip_hint"
+        android:padding="0dp"
+        android:textSize="@dimen/text_size_middle1"
+        app:layout_constraintBottom_toBottomOf="@+id/config_tip"
+        app:layout_constraintLeft_toRightOf="@+id/config_tip"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/config_tip" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pop_cancel"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/white"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/cancel"
+        android:textAllCaps="false"
+        android:textAppearance="@android:style/Widget.TextView"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_middle3"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="7:2"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/pop_confirm" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pop_confirm"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/white"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="@string/confirm"
+        android:textAllCaps="false"
+        android:textAppearance="@android:style/Widget.TextView"
+        android:textColor="@color/blue_light"
+        android:textSize="@dimen/text_size_middle3"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="7:2"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/pop_cancel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_weight="1" />
+</androidx.constraintlayout.widget.ConstraintLayout>
