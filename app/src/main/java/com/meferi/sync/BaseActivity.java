@@ -18,6 +18,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override // androidx.fragment.app.FragmentActivity, androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, android.app.Activity
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        getSupportActionBar().hide();
         Utils.setWindowStatusBarColor(this, R.color.Transparent);
         getWindow().getDecorView().setSystemUiVisibility(9216);
 

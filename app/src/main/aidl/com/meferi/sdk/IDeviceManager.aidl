@@ -4,5 +4,5 @@ package com.meferi.sdk;
 
 interface IDeviceManager {
 String getSystemCongfig(String str);
-void setSystemCongfig(String str);
+void setSystemConfig(String key, String val);
 }

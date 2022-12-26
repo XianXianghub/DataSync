@@ -17,6 +17,7 @@ import com.lxj.xpopup.util.XPopupUtils;
 import com.meferi.sync.QrcodeActivity;
 import com.meferi.sync.R;
 import com.meferi.sync.SettingConfigBean;
+import com.meferi.sync.UploadOrExpertActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -151,8 +152,8 @@ public class BottomWindow extends BottomPopupView {
                 intent = new Intent(this.mContext, QrcodeActivity.class);
             }
             else {
-                Intent intent2 = new Intent(this.mContext, QrcodeActivity.class);
-//                Intent intent2 = new Intent(this.mContext, UploadOrExpertActivity.class);
+               // Intent intent2 = new Intent(this.mContext, QrcodeActivity.class);
+                Intent intent2 = new Intent(this.mContext, UploadOrExpertActivity.class);
                 settingConfigBean.setTip(this.configTipValue.getText().toString());
                 if (this.title.equals(this.mContext.getString(R.string.upload_to_ums))) {
                     settingConfigBean.setAction(0);

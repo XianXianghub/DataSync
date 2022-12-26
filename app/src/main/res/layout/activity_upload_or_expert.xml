@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/return_view"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:paddingStart="0dp"
+        app:backgroundTint="@color/Transparent"
+        app:elevation="0dp"
+        app:icon="@drawable/ic_return"
+        app:iconSize="@dimen/dp30"
+        app:iconTint="@color/black"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="@color/white" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/file_view"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="@dimen/dp40"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginTop="@dimen/dp20"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:visibility="invisible"
+        app:backgroundTint="@color/Transparent"
+        app:elevation="0dp"
+        app:icon="@drawable/ic_folderopen"
+        app:iconSize="@dimen/dp30"
+        app:iconTint="@color/black"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="@color/white" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/view_pop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white_light"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upload_title">
+
+        <com.wang.avi.AVLoadingIndicatorView
+            android:id="@+id/avl_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="@dimen/dp20"
+            app:indicatorColor="@color/blue_light"
+            app:indicatorName="BallClipRotateMultipleIndicator"
+            app:layout_constraintBottom_toTopOf="@+id/tip_load"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/tip_load"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20"
+            android:text="@string/qrcode_generating"
+            android:textColor="@color/line_gray_half"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/avl_view"
+            app:layout_constraintVertical_chainStyle="packed" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/upload_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp20"
+        android:text="@string/upload_to_ums"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_big2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/return_view" />
+
+    <ImageView
+        android:id="@+id/result_image"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/dp140"
+        android:layout_marginRight="@dimen/dp140"
+        app:layout_constraintBottom_toTopOf="@+id/tip_result"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upload_title"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tip_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp35"
+        android:layout_marginTop="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp35"
+        android:gravity="center"
+        android:text="@string/config_upload_to_ums_success"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_middle1"
+        app:layout_constraintBottom_toTopOf="@+id/cancel_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/result_image"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/cancel_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="@dimen/dp30"
+        android:layout_marginTop="@dimen/dp40"
+        android:layout_marginRight="@dimen/dp30"
+        android:backgroundTint="@color/blue_light"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:stateListAnimator="@null"
+        android:text="@string/finish"
+        android:textAllCaps="false"
+        android:textAppearance="@android:style/Widget.TextView"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_middle3"
+        app:cornerRadius="@dimen/dp3"
+        app:layout_constraintBottom_toTopOf="@+id/upload_again"
+        app:layout_constraintDimensionRatio="13:2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tip_result"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/upload_again"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/dp30"
+        android:layout_marginTop="@dimen/dp10"
+        android:layout_marginEnd="@dimen/dp30"
+        android:backgroundTint="@color/white"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:stateListAnimator="@null"
+        android:text="@string/upload_again"
+        android:textAllCaps="false"
+        android:textAppearance="@android:style/Widget.TextView"
+        android:textColor="@color/blue_light"
+        android:textSize="@dimen/text_size_middle3"
+        app:cornerRadius="@dimen/dp3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="13:2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cancel_button"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:strokeColor="@color/blue_light"
+        app:strokeWidth="1dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">syncservice</string>
+    <string name="app_name">DataSync</string>
     <string name="__arcore_cancel">Cancel</string>
     <string name="__arcore_continue">Continue</string>
     <string name="__arcore_install_app">This application requires the latest version of Google Play Services for AR.</string>
@@ -13,6 +13,7 @@
     <string name="abc_activitychooserview_choose_application">Choose an app</string>
     <string name="abc_capital_off">OFF</string>
     <string name="abc_capital_on">ON</string>
+    <string name="setting_syncing">Syncing....</string>
     <string name="abc_menu_alt_shortcut_label">Alt+</string>
     <string name="abc_menu_ctrl_shortcut_label">Ctrl+</string>
     <string name="abc_menu_delete_shortcut_label">delete</string>
@@ -164,7 +165,7 @@
     <string name="search_menu_title">Search</string>
     <string name="setting_init">Part of the setting data has been initialized, please reconfirm the setting item you selected</string>
     <string name="setting_name_is">configuration name is</string>
-    <string name="setting_syncing">Syncing....</string>
+
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="sync_fail">Set sync failed</string>
     <string name="sync_success">Sync succeeded, reboot to take effect</string>

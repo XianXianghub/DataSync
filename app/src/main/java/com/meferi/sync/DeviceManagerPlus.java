@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.util.Log;
 
 import com.meferi.devicemanager.MefDeviceManager;
 import com.meferi.sdk.IDeviceManager;
@@ -22,6 +23,18 @@ public class DeviceManagerPlus {
     public static String getDeviceId() {
         String sn = MefDeviceManager.getInstance().getProperty("ro.serialno");
         return sn;
+    }
+
+    public void setSystemConfig(String key, String val) {
+        Log.d("bds", "key="+key+" val="+val);
+        if (getProxy()  == null) {
+            return ;
+        }
+        try {
+             getProxy().setSystemConfig(key,  val);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
     public static DeviceManagerPlus get(Context context) {
         mContext = context;
