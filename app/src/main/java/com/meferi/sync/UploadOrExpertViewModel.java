@@ -104,14 +104,11 @@ public class UploadOrExpertViewModel extends ViewModel {
     public void ConfigExpert(Intent intent) {
         ScanTypeResume();
         getSettingConfig(intent);
-//        ConfigExpertT(getSettingConfig().getValue().isScan(), getSettingConfig().getValue().isSystem());
+        ConfigExpertT(getSettingConfig().getValue().isScan(), getSettingConfig().getValue().isSystem());
 
-        ConfigExpertT(false, getSettingConfig().getValue().isSystem());
     }
 
     public void UploadOrExpert(LifecycleOwner lifecycleOwner) {
-
-        Log.e("bds",Log.getStackTraceString(new Throwable()));
         if (this.settingConfig.getValue().getAction() == 0) {
             uploadToUms(lifecycleOwner);
         } else {
@@ -195,7 +192,6 @@ public class UploadOrExpertViewModel extends ViewModel {
         try {
             List<ConfigBean> value = getConfigs().getValue();
             String str4 = "";
-            Log.d("yyy", "value==="+value.size());
 
             if (value.size() > 1) {
                 if (TextUtils.isEmpty(this.settingConfig.getValue().getTip())) {

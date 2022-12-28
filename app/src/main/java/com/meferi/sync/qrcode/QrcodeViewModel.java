@@ -58,8 +58,8 @@ public class QrcodeViewModel extends ViewModel {
         ScanTypeResume();
         SettingConfigBean settingConfigBean = (SettingConfigBean) intent.getSerializableExtra("data");
         this.configs.setValue(new ArrayList());
-      //  ConfigExpertT(settingConfigBean.isScan(), settingConfigBean.isSystem());
-      ConfigExpertT(false, true);
+       ConfigExpertT(settingConfigBean.isScan(), settingConfigBean.isSystem());
+
     }
 
     private void ConfigExpertT(boolean z, boolean z2) {
@@ -69,7 +69,7 @@ public class QrcodeViewModel extends ViewModel {
 
                 @Override // java.lang.Runnable
                 public final void run() {
-                    QrcodeViewModel.this.exportScanSettings(true);
+                    QrcodeViewModel.this.exportScanSettings();
                 }
             });
         }
@@ -84,13 +84,13 @@ public class QrcodeViewModel extends ViewModel {
 
     }
 
-    public  void exportScanSettings(boolean z) {
+    public  void exportScanSettings() {
         try {
             Log.d("bds", "lambda$ConfigExpertT$0$QrcodeViewModel");
-            getConfigs().getValue().add(Utils.ScannerSettingExpert("scanner_"/* + DeviceUtil.getDeviceId())*/));
-            if (!z) {
-                this.isSuccess.postValue(true);
-            }
+            getConfigs().getValue().add(Utils.ScannerSettingExpert("system_" + MainApplication.deviceManagerPlus.getDeviceId()));
+
+            this.isSuccess.postValue(true);
+
         } catch (Exception e) {
             this.isSuccess.postValue(false);
             this.service.getQueue().clear();
