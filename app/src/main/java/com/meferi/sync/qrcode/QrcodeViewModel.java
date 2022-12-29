@@ -58,7 +58,7 @@ public class QrcodeViewModel extends ViewModel {
         ScanTypeResume();
         SettingConfigBean settingConfigBean = (SettingConfigBean) intent.getSerializableExtra("data");
         this.configs.setValue(new ArrayList());
-       ConfigExpertT(settingConfigBean.isScan(), settingConfigBean.isSystem());
+        ConfigExpertT(settingConfigBean.isScan(), settingConfigBean.isSystem());
 
     }
 

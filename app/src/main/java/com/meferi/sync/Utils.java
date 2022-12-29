@@ -15,7 +15,6 @@ import android.view.Window;
 
 import androidx.core.app.NotificationCompat;
 
-
 import com.meferi.DeflaterUtils;
 import com.meferi.scanner.ScannerManager;
 
@@ -28,6 +27,7 @@ import java.util.Map;
 
 /* loaded from: classes2.dex */
 public class Utils {
+    private static String TAG = "Utils";
     public static void setWindowStatusBarColor(Activity activity, int i) {
         try {
             if (Build.VERSION.SDK_INT >= 21) {
@@ -40,22 +40,20 @@ public class Utils {
         }
     }
     public static ConfigBean ScannerSettingExpert(String str) throws Exception {
-        Log.d("sss", "export scanner");
+        Log.d(TAG, "export scanner");
         String config = ScannerManager.getInstance().getSyncService();
         String zipBase64 = config;
         return new ConfigBean(str, MainApplication.getInstance().getString(R.string.config_scan), zipBase64, QRCodeUtil.createQRCode(zipBase64, 700));
-
-
     }
     public static void SettingImport(Context context, String str, String str2) throws Exception {
-        Log.d("bds", "undecode00="+str);
+        Log.d(TAG, "undecode00="+str);
         String[] split = str.split("\u001e");
 
         for (int i = 0; i < split.length; i++) {
-            Log.d("bds", split[i]);
+            Log.d(TAG, split[i]);
             split[i] = unzipBase64(split[i]);
         }
-        Log.d("bds", "undecode="+Arrays.toString(split));
+        Log.d(TAG, "undecode="+Arrays.toString(split));
         for (String str3 : split) {
             if (!TextUtils.isEmpty(str3)) {
                 if (str3.startsWith("scantool", 0)) {
@@ -66,6 +64,7 @@ public class Utils {
                      }
                 } else if (str3.startsWith(NotificationCompat.CATEGORY_SYSTEM, 0)) {
                     SettingImportSystem(str3);
+
                 } else {
                     throw new Exception("Incorrect string format");
                 }
