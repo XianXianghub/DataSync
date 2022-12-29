@@ -1,4 +1,4 @@
-package com.meferi.sync;
+package com.meferi.datasync;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.google.android.material.button.MaterialButton;
 import com.lxj.xpopup.XPopup;
-import com.meferi.sync.window.BottomWindow;
+import com.meferi.datasync.window.BottomWindow;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

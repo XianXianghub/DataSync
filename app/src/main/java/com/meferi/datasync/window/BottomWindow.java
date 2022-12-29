@@ -1,4 +1,4 @@
-package com.meferi.sync.window;
+package com.meferi.datasync.window;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,10 +14,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.lxj.xpopup.core.BottomPopupView;
 import com.lxj.xpopup.util.XPopupUtils;
-import com.meferi.sync.QrcodeActivity;
-import com.meferi.sync.R;
-import com.meferi.sync.SettingConfigBean;
-import com.meferi.sync.UploadOrExpertActivity;
+import com.meferi.datasync.QrcodeActivity;
+import com.meferi.datasync.R;
+import com.meferi.datasync.SettingConfigBean;
+import com.meferi.datasync.UploadOrExpertActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

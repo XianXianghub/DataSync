@@ -1,4 +1,4 @@
-package com.meferi.sync;
+package com.meferi.datasync;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -27,7 +27,7 @@ import com.huawei.hms.ml.scan.HmsScanBase;
 import com.lxj.xpopup.XPopup;
 import com.meferi.scanner.ScannerManager;
 import com.meferi.scanner.tool.Constants;
-import com.meferi.sync.window.LoadingWindow;
+import com.meferi.datasync.window.LoadingWindow;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +38,6 @@ public class MainActivity extends BaseActivity implements  View.OnClickListener{
     ScannerManager mScannerManager;
     int mLastScanOutputMode ;
     int MaxLenth = 48 ;
-    int Scanner ;
     private String ACTION_SEND_RESULT = "android.intent.action.RECEIVE_SCANDATA_BROADCAST";
     private String EXTRA_SCAN_BARCODE = "android.intent.extra.SCAN_BROADCAST_DATA";
     private String EXTRA_SCAN_BARCODE_TYPE = "BROADCAST_CODE_TYPE";

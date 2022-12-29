@@ -1,4 +1,4 @@
-package com.meferi.sync;
+package com.meferi.datasync;
 
 import android.app.Activity;
 import android.view.View;
@@ -28,7 +28,7 @@ public class SimpleAdapter extends BaseBannerAdapter<ConfigBean> {
     public void bindData(BaseViewHolder<ConfigBean> baseViewHolder, final ConfigBean configBean, int i, int i2) {
         Glide.with(this.mContext).load(configBean.getConfigQrcode()).into((ImageView) baseViewHolder.findViewById(R.id.banner_image));
         baseViewHolder.setText((int) R.id.config_name_value, configBean.getConfigName());
-        baseViewHolder.setText((int) R.id.config_type_value, configBean.getConfigType());
+       // baseViewHolder.setText((int) R.id.config_type_value, configBean.getConfigType());
         baseViewHolder.findViewById(R.id.banner_image).setOnClickListener(new View.OnClickListener() { // from class: com.ubx.ustage.base.SimpleAdapter.1
             @Override // android.view.View.OnClickListener
             public void onClick(View view) {

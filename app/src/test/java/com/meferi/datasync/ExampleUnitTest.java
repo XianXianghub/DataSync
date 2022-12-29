@@ -1,4 +1,4 @@
-package com.meferi.sync;
+package com.meferi.datasync;
 
 import org.junit.Test;
 

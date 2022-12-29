@@ -1,4 +1,4 @@
-package com.meferi.sync;
+package com.meferi.datasync;
 
 import android.content.Intent;
 import android.os.Bundle;

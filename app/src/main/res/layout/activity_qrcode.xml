@@ -1,102 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/view_toast"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/back"
-    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/return_view"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="0dp"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dp20"
-        android:layout_marginRight="@dimen/dp20"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:paddingStart="0dp"
-        app:elevation="0dp"
-        app:icon="@drawable/ic_return"
-        app:iconSize="@dimen/dp30"
-        app:iconTint="@color/white_light"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="@color/Transparent" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/view_pop"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/qrcode_title">
-
-        <com.wang.avi.AVLoadingIndicatorView
-            android:id="@+id/avl_view"
-            android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/return_view"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/white_light"
-            app:indicatorColor="@color/white_light"
-            app:indicatorName="BallClipRotateMultipleIndicator"
-            app:layout_constraintBottom_toTopOf="@+id/tip_load"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:paddingStart="0dp"
+            app:elevation="0dp"
+            app:icon="@drawable/ic_return"
+            app:iconSize="@dimen/dp30"
+            app:iconTint="@color/white_light"
+            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:rippleColor="@color/Transparent" />
+
+
+        <Button
+            android:id="@+id/save_local"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:textSize="@dimen/text_size_big1"
+            android:text="@string/save_local"
+            android:textColor="@color/white_light"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:layout_editor_absoluteY="9dp" />
 
         <TextView
-            android:id="@+id/tip_load"
-            android:layout_width="wrap_content"
+            android:id="@+id/pages"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp20"
-            android:gravity="center"
-            android:text="@string/qrcode_generating"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:text=""
+            android:gravity="right |center_vertical"
             android:textColor="@color/white_light"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            android:textSize="@dimen/text_size_big1"
+            app:layout_constraintBottom_toBottomOf="@+id/save_local"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/avl_view"
-            app:layout_constraintVertical_chainStyle="packed" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="@+id/save_local" />
+    </LinearLayout>
+
+
+
+
 
     <com.zhpan.bannerview.BannerViewPager
         android:id="@+id/banner_qrcode"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp10"
+        android:layout_weight="1"
         android:layout_marginBottom="@dimen/dp10"
-        android:background="@color/Transparent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/qrcode_title"
-        app:layout_constraintVertical_bias="0.2" />
-
-    <TextView
-        android:id="@+id/qrcode_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp20"
-        android:text="@string/qrcode_title"
-        android:textColor="@color/white_light"
-        android:textSize="@dimen/text_size_big2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/return_view" />
-
-    <TextView
-        android:id="@+id/pages"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/dp20"
-        android:text=""
-        android:textColor="@color/white_light"
-        android:textSize="@dimen/text_size_big1"
-        app:layout_constraintBottom_toBottomOf="@+id/qrcode_title"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/qrcode_title" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:background="@color/Transparent" />
+</LinearLayout>

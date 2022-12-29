@@ -48,7 +48,7 @@
     <string name="clear_text_end_icon_content_description">Clear text</string>
     <string name="config_expert_to_sdcard_fail">Failed to save to sdcard/UStage, please try again</string>
     <string name="config_expert_to_sdcard_success">Saved to sdcard/UStage successfully</string>
-    <string name="config_name">Config name:</string>
+    <string name="config_name">Name:</string>
     <string name="config_scan">Scanner configuration</string>
     <string name="config_system">System settings</string>
     <string name="config_system_scanner">Scanner configuration_System settings</string>
@@ -150,7 +150,7 @@
     <string name="path_password_strike_through">M3.27,4.27 L19.74,20.74</string>
     <string name="qrcode_genera">Generate barcode</string>
     <string name="qrcode_generating">QR code generation...</string>
-    <string name="qrcode_title">Configure barcode</string>
+    <string name="save_local">Save</string>
     <string name="reboot">Reboot</string>
     <string name="retry">retry</string>
     <string name="scan_tip">Import</string>
@@ -173,6 +173,8 @@
     <string name="ums_upload">UMS version is too low, please upgrade to 2.7.0 and above</string>
     <string name="upload_again">Upload again</string>
     <string name="upload_to_ums">Upload to UMS</string>
+    <string name="import_from_scanner">Import from scanner</string>
+    <string name="import_from_camera">Import from camera</string>
     <string name="usdk_uplaod">USDKProfileService is not installed on the device</string>
     <string name="usdk_version">USDKProfileService version is too low, please upgrade to 10.0.18 and above</string>
     <string name="xpopup_cancel">cancel</string>

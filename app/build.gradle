@@ -7,11 +7,11 @@ def signerName(){
     return 'q'
 }
 android {
-    namespace 'com.meferi.sync'
+    namespace 'com.meferi.datasync'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.meferi.sync"
+        applicationId "com.meferi.datasync"
         minSdk 28
         targetSdk 32
         versionCode 1
@@ -57,7 +57,7 @@ dependencies {
     implementation 'com.github.yuzhiqiang1993:zxing:2.2.9'
    // implementation 'com.google.zxing:core:3.5.0'
 
-
+    implementation 'com.github.hackware1993:MagicIndicator:1.7.0' // for androidx
     implementation 'com.github.zhpanvip:bannerviewpager:3.5.8'
 
     implementation'com.nineoldandroids:library:2.4.0'

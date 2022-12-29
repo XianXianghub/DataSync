@@ -1,4 +1,4 @@
-package com.meferi.sync.window;
+package com.meferi.datasync.window;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,7 +15,7 @@ import androidx.transition.TransitionSet;
 
 import com.lxj.xpopup.core.CenterPopupView;
 import com.lxj.xpopup.util.XPopupUtils;
-import com.meferi.sync.R;
+import com.meferi.datasync.R;
 import com.wang.avi.AVLoadingIndicatorView;
 
 import butterknife.BindView;

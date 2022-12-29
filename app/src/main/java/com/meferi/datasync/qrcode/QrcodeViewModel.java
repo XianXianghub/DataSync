@@ -1,4 +1,4 @@
-package com.meferi.sync.qrcode;
+package com.meferi.datasync.qrcode;
 
 import android.content.Intent;
 import android.util.Log;
@@ -6,10 +6,10 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.meferi.sync.ConfigBean;
-import com.meferi.sync.MainApplication;
-import com.meferi.sync.SettingConfigBean;
-import com.meferi.sync.Utils;
+import com.meferi.datasync.ConfigBean;
+import com.meferi.datasync.MainApplication;
+import com.meferi.datasync.SettingConfigBean;
+import com.meferi.datasync.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +87,7 @@ public class QrcodeViewModel extends ViewModel {
     public  void exportScanSettings() {
         try {
             Log.d("bds", "lambda$ConfigExpertT$0$QrcodeViewModel");
-            getConfigs().getValue().add(Utils.ScannerSettingExpert("system_" + MainApplication.deviceManagerPlus.getDeviceId()));
+            getConfigs().getValue().add(Utils.ScannerSettingExpert("scanner_" + MainApplication.deviceManagerPlus.getDeviceId()));
 
             this.isSuccess.postValue(true);
 

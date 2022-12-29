@@ -1,4 +1,4 @@
-package com.meferi.sync;
+package com.meferi.datasync;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;

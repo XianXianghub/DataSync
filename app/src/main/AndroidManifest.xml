@@ -14,9 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Syncservice"
 
+
+
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.DataSyncActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
