@@ -148,7 +148,7 @@ public class UploadOrExpertViewModel extends ViewModel {
         }
     }
 
-    public /* synthetic */ void lambda$ConfigExpertT$0$UploadOrExpertViewModel() {
+    public  void lambda$ConfigExpertT$0$UploadOrExpertViewModel() {
         try {
             getConfigs().getValue().add(Utils.ScannerSettingExpert("scanner_" + MainApplication.deviceManagerPlus.getDeviceId()));
             if (this.service.getQueue().isEmpty()) {

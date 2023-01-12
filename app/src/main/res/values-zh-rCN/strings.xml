@@ -185,11 +185,11 @@
     <string name="xpopup_save">save</string>
     <string name="xpopup_saved_fail">Image save failed</string>
     <string name="xpopup_saved_to_gallery">Saved to album</string>
-    <string name="text_nfc_no_open">"NFC is not open, do you want to enter the setting page"</string>
-    <string name="main_ok">ok</string>
-    <string name="main_cancel">cancel</string>
-    <string name="text_nfc_exprot_fail">"NFC export failed, please try again！！！"</string>
-    <string name="text_import_nfc_contact">"NFC import: please contact two devices"</string>
-    <string name="text_get_nfc_fail">" Failed to receive NFC data, please try again!"</string>
-    <string name="bt_receive">"Import files"</string>
+    <string name="text_nfc_no_open">"nfc未打开，是否进入设置页面"</string>
+    <string name="main_ok">确认</string>
+    <string name="main_cancel">"取消"</string>
+    <string name="text_nfc_exprot_fail">"NFC导出失败，请重试！！！"</string>
+    <string name="text_import_nfc_contact">"NFC导入：请接触两台设备"</string>
+    <string name="text_get_nfc_fail">"接收NFC数据失败，请重试！"</string>
+    <string name="bt_receive">"导入文件"</string>
 </resources>

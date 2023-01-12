@@ -30,6 +30,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity
+            android:name=".activity.ImprotNfcActivity"
+            android:label="Android Beam Viewer"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".ExpertActivity" android:exported="true" android:launchMode="singleTask"/>
         <activity android:name=".QrcodeActivity" android:exported="true" android:launchMode="singleTask"/>
         <activity android:name=".UploadOrExpertActivity" android:exported="true" android:launchMode="singleTask"/>

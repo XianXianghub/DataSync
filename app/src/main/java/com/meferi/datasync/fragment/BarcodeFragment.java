@@ -142,7 +142,7 @@ public class BarcodeFragment extends BaseFragment implements View.OnClickListene
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_datasync, null);
+        View view = inflater.inflate(R.layout.qrcode_datasync, null);
         this.popupView = new BottomWindow(getActivity());
         mContext = getActivity();
         initView(view);

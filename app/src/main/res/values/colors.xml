@@ -166,4 +166,5 @@
     <color name="primary_color">#474747</color>
     <color name="btn_normal_blue">#1296db</color>
     <color name="btn_pressed_blue">#2942d1</color>
+    <color name="font_color">#808080</color>
 </resources>

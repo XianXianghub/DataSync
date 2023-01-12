@@ -170,7 +170,7 @@ public class DataSyncActivity extends AppCompatActivity implements View.OnClickL
     /* access modifiers changed from: protected */
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_datasync_main);
+        setContentView(R.layout.datasync_main);
         ActionBar actionBar = getSupportActionBar();
         actionBar.setHomeButtonEnabled(true);
         actionBar.setDisplayHomeAsUpEnabled(true);

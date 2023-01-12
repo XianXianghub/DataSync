@@ -1,17 +1,20 @@
 package com.meferi.datasync.fragment;
 
-import android.content.BroadcastReceiver;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.net.Uri;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcEvent;
 import android.os.Bundle;
-import android.os.RemoteException;
-import android.os.SystemProperties;
+import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
@@ -20,34 +23,30 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.google.android.material.button.MaterialButton;
-import com.huawei.hms.hmsscankit.ScanKitActivity;
 import com.huawei.hms.hmsscankit.ScanUtil;
 import com.huawei.hms.ml.scan.HmsScan;
 import com.huawei.hms.ml.scan.HmsScanAnalyzerOptions;
-import com.huawei.hms.ml.scan.HmsScanBase;
 import com.lxj.xpopup.XPopup;
+import com.meferi.datasync.ConfigBean;
 import com.meferi.datasync.MainViewModel;
 import com.meferi.datasync.R;
+import com.meferi.datasync.Utils;
 import com.meferi.datasync.window.BottomWindow;
 import com.meferi.datasync.window.LoadingWindow;
-import com.meferi.scanner.ScannerManager;
-import com.meferi.scanner.tool.Constants;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 
-public class NfcFragment extends BaseFragment implements View.OnClickListener, View.OnTouchListener{
+public class NfcFragment extends BaseFragment implements View.OnClickListener, NfcAdapter.CreateBeamUrisCallback {
     private final String TAG = "BarcodeFragment";
     HmsScanAnalyzerOptions options = new HmsScanAnalyzerOptions.Creator().setHmsScanTypes(HmsScan.QRCODE_SCAN_TYPE, HmsScan.DATAMATRIX_SCAN_TYPE).create();
     ActivityResultLauncher<Intent> launcher;
     private LoadingWindow loadingPopupView;
     BottomWindow popupView;
     private MainViewModel mainViewModel;
-    ScannerManager mScannerManager;
-    private MaterialButton ScannerView;
-    int mLastScanOutputMode ;
-    int MaxLenth = 48 ;
-    private String ACTION_SEND_RESULT = "android.intent.action.RECEIVE_SCANDATA_BROADCAST";
-    private String EXTRA_SCAN_BARCODE = "android.intent.extra.SCAN_BROADCAST_DATA";
+    private NfcAdapter mNfcAdapter;
 
     public NfcFragment() {
         super();
@@ -58,28 +57,86 @@ public class NfcFragment extends BaseFragment implements View.OnClickListener, V
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public Uri[] createBeamUris(NfcEvent nfcEvent) {
+        Log.d("sss", "createBeamUris");
+        ConfigBean scannerbean = null;
+        ConfigBean settingbean = null;
+        String data = "";
+        String fileName="";
+        try {
+            scannerbean = Utils.ScannerSettingExpert("scanner");
+            data += scannerbean.getConfig();
+            fileName = "scanner";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+
+        try {
+            settingbean = Utils.ScannerSettingExpert("scanner");
+            if(TextUtils.isEmpty(data)){
+                data = settingbean.getConfig();
+            }else {
+                data += "\u001f"+settingbean.getConfig();
+            }
+            if(TextUtils.isEmpty(fileName)){
+                fileName = "setting";
+            }else {
+                fileName += "_setting";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            File file = new File(Environment.getExternalStorageDirectory() + File.separator + "DataSync", fileName+".txt");
+            File imageFilePath = new File(Environment.getExternalStorageDirectory() + File.separator + "UStage");
+
+            if (!imageFilePath.exists()) {
+                imageFilePath.mkdirs();
+            }
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write(data.getBytes());
+            fileOutputStream.close();
+
+
+            if (file.exists()){
+                Log.d(TAG, "getAbsolutePath="+file.getAbsolutePath());
+                Uri[] uris = new Uri[1];
+                Uri uri = Uri.parse("file://" + file.getAbsolutePath());
+                uris[0] = uri;
+                return uris;
+            }else {
+                Toast.makeText(getActivity(), getString(R.string.text_nfc_exprot_fail), Toast.LENGTH_SHORT).show();
+                return null;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return new Uri[0];
+    }
 
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.import_scanner:
-                return;
-            case R.id.import_camera:
-                Intent intent = new Intent(getActivity(), ScanKitActivity.class);
-                intent.putExtra(HmsScanBase.SCAN_FORMAT_FLAG, this.options.mode);
-                this.launcher.launch(intent);
-                getActivity().overridePendingTransition(17432576, 17432577);
+            case R.id.nfc_export:
 
 
                 return;
-            case R.id.generate_qr:
-                PopShow(getString(R.string.qrcode_genera));
-//                PopShow(getString(R.string.local_expert));
-               break;
+            case R.id.nfc_import:
+
+                return;
             default:
                 return;
         }
     }
+
     public void showLoading() {
         LoadingWindow loadingWindow = this.loadingPopupView;
         if (loadingWindow == null) {
@@ -93,17 +150,8 @@ public class NfcFragment extends BaseFragment implements View.OnClickListener, V
     }
 
     private void initView(View view) {
-        mScannerManager = ScannerManager.getInstance();
-        try {
-            if(mScannerManager.isScannerServiceRunning()) {
 
-                ACTION_SEND_RESULT = mScannerManager.getBroadcastParam(Constants.BROADCAST_CODE_ACTION);
-                EXTRA_SCAN_BARCODE = mScannerManager.getBroadcastParam(Constants.BROADCAST_CODE_DATA1);
-            }
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
-        this.mainViewModel  = (MainViewModel) new ViewModelProvider(this).get(MainViewModel.class);
+        this.mainViewModel = (MainViewModel) new ViewModelProvider(this).get(MainViewModel.class);
         mainViewModel.getIsLoading().observe(this, new Observer<Integer>() { // from class: com.ubx.ustage.ui.home.MainActivity.1
             public void onChanged(Integer num) {
                 int intValue = num.intValue();
@@ -126,23 +174,15 @@ public class NfcFragment extends BaseFragment implements View.OnClickListener, V
                 }
             }
         });
-        ScannerView = view.findViewById(R.id.import_scanner);
-        view.findViewById(R.id.import_camera).setOnClickListener(this);
-       ScannerView.setOnClickListener(this);
-       ScannerView.setOnTouchListener(this);
-        view.findViewById(R.id.generate_qr).setOnClickListener(this);
+        view.findViewById(R.id.nfc_export).setOnClickListener(this);
+        view.findViewById(R.id.nfc_import).setOnClickListener(this);
     }
-    public void PopShow(String str) {
-        Log.d("bds","PopShow");
-        this.popupView.setTitle(str);
-        new XPopup.Builder(getActivity()).autoOpenSoftInput(false).autoFocusEditText(false).moveUpToKeyboard(true).isDestroyOnDismiss(false).asCustom(this.popupView).show();
 
-    }
     private Context mContext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_datasync, null);
+        View view = inflater.inflate(R.layout.nfc_datasync, null);
         this.popupView = new BottomWindow(getActivity());
         mContext = getActivity();
         initView(view);
@@ -158,13 +198,40 @@ public class NfcFragment extends BaseFragment implements View.OnClickListener, V
     @Override
     public void onResume() {
         super.onResume();
-        doResume();
+        mNfcAdapter = mNfcAdapter.getDefaultAdapter(mContext);
+        if (mNfcAdapter != null && mNfcAdapter.isEnabled()) {
+
+        } else {
+            IsToSet(getActivity());
+            // Toast.makeText(this, "NFC 未打开，请打开NFC!!", Toast.LENGTH_SHORT).show();
+        }
+        mNfcAdapter.setBeamPushUrisCallback(this, getActivity());
+    }
+
+    private void IsToSet(Context activity) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setMessage(getString(R.string.text_nfc_no_open));
+        // builder.setTitle("提示");
+        builder.setPositiveButton(getString(R.string.main_ok), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent("android.settings.NFC_SETTINGS");
+                activity.startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton(getString(R.string.main_cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        doPause();
     }
 
 
@@ -179,18 +246,8 @@ public class NfcFragment extends BaseFragment implements View.OnClickListener, V
         super.setUserVisibleHint(isVisibleToUser);
 
     }
-    
-    public boolean onTouch(View view, MotionEvent motionEvent) {
-        int id = view.getId();
-        if (motionEvent.getAction() == 0) {
-            ScannerView.setTextColor(getActivity().getColor(R.color.blue_light));
-            mScannerManager.keyScan(true);
-        } else if (motionEvent.getAction() == 1) {
-            ScannerView.setTextColor(getActivity().getColor(R.color.white));
-            mScannerManager.keyScan(false);
-        }
-        return false;
-    }
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -199,63 +256,6 @@ public class NfcFragment extends BaseFragment implements View.OnClickListener, V
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unRegisterReceiver();
-    }
-
-
-    private BroadcastReceiver mResultReceiver = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent)
-        {
-            String action = intent.getAction();
-            Log.d(TAG, "action="+action);
-            if (ACTION_SEND_RESULT.equals(action))
-            {
-                String stringExtra = intent.getStringExtra(EXTRA_SCAN_BARCODE);
-                showLoading();
-                mainViewModel.postBarcode(stringExtra);
-            }
-        }
-    };
-    private void registerReceiver()
-    {
-//        IntentFilter intFilter = new IntentFilter();
-//        intFilter.addAction(ACTION_SEND_RESULT);
-//        getActivity().registerReceiver(mResultReceiver, intFilter);
-    }
-    private void unRegisterReceiver()
-    {
-//        try {
-//            mContext.unregisterReceiver(mResultReceiver);
-//        } catch (Exception e) {
-//
-//        }
-    }
-
-
-    private void doResume() {
-//        Log.d(TAG, "registerReceiver");
-//        registerReceiver();
-//        SystemProperties.set("persist.sys.barcode.limit", "0");
-//        try {
-//            mLastScanOutputMode = mScannerManager.getScanResultOutputMode();
-//            mScannerManager.setScanResultOutputMode(Constants.OUTPUT_MODE_BROADCAST);
-//            MaxLenth = Integer.valueOf(mScannerManager.getCodeParam("QR", "Maxlen"));
-//            mScannerManager.setCodeParam("QR", "Maxlen", "500");
-//        } catch (RemoteException e) {
-//            e.printStackTrace();
-//        }
-//        SystemProperties.set("persist.sys.barcode.limit", "1");
-    }
-
-    private void doPause() {
-//        if(mScannerManager != null) {
-//            SystemProperties.set("persist.sys.barcode.limit", "0");
-//            mScannerManager.setCodeParam("QR", "Maxlen", String.valueOf(MaxLenth));
-//            SystemProperties.set("persist.sys.barcode.limit", "1");
-//            mScannerManager.setScanResultOutputMode(mLastScanOutputMode);
-//        }
     }
 
 
